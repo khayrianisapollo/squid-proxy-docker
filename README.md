@@ -1,8 +1,3 @@
-Here’s an updated and well-structured `README.md` for your Squid Proxy Docker setup:
-
----
-
-````markdown
 # Squid Proxy Docker
 
 Deploy Squid Proxy in a Docker container for caching and forwarding HTTP, HTTPS, and FTP requests.
@@ -100,8 +95,3 @@ curl -x http://<SERVER_IP>:3128 http://httpbin.org/ip
 
 * You can further secure your proxy by adding authentication or enabling SSL in `squid.conf`.
 * Consider using a fixed IP for your client or managing access via VPN if exposing the proxy to the public internet.
-
-```
-
-Let me know if you’d like to also add logs, debugging tips, or authentication.
-```
