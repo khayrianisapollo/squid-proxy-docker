@@ -95,3 +95,5 @@ curl -x http://<SERVER_IP>:3128 http://httpbin.org/ip
 
 * You can further secure your proxy by adding authentication or enabling SSL in `squid.conf`.
 * Consider using a fixed IP for your client or managing access via VPN if exposing the proxy to the public internet.
+* Check out this [GitHub repository](https://github.com/FrancescoDiSalesGithub/Google-cloud-shell-hacking), specifically the section titled **"Use the Google Cloud Shell as Proxy"** for guidance on leveraging Google Cloud Shell as a proxy.
+
