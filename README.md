@@ -73,8 +73,8 @@ To test the proxy, use a different machine (not the host server) and replace `<S
 import requests
 
 proxies = {
-    "http": "http://<SERVER_IP>:3128",
-    "https": "http://<SERVER_IP>:3128",
+    "http": "<PROXY_SERVER_IP>:<PROXY_SERVER_PORT>",
+    "https": "<PROXY_SERVER_IP>:<PROXY_SERVER_PORT>",
 }
 
 response = requests.get("https://ipinfo.io/ip", proxies=proxies)
@@ -84,7 +84,7 @@ print(response.text)
 ### Using curl
 
 ```bash
-curl -x http://<SERVER_IP>:3128 https://ipinfo.io/ip
+curl -x <PROXY_SERVER_IP>:<PROXY_SERVER_PORT> https://ipinfo.io/ip
 ```
 
 > You should see the IP of your proxy server in the response, confirming that traffic is being routed through Squid.
