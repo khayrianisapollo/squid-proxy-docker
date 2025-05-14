@@ -77,14 +77,14 @@ proxies = {
     "https": "http://<SERVER_IP>:3128",
 }
 
-response = requests.get("http://httpbin.org/ip", proxies=proxies)
+response = requests.get("https://ipinfo.io/ip", proxies=proxies)
 print(response.text)
 ```
 
 ### Using curl
 
 ```bash
-curl -x http://<SERVER_IP>:3128 http://httpbin.org/ip
+curl -x http://<SERVER_IP>:3128 https://ipinfo.io/ip
 ```
 
 > You should see the IP of your proxy server in the response, confirming that traffic is being routed through Squid.
