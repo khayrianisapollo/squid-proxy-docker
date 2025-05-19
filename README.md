@@ -60,6 +60,20 @@ This proxy server is designed to be hosted on a remote machine (e.g., VPS or clo
 ```bash
 docker compose up -d
 ```
+### Google Cloud shell
+```bash
+sudo apt install -y squid
+sudo cp squid.conf /etc/squid/
+sudo service squid start
+curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+  | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null \
+  && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+  | sudo tee /etc/apt/sources.list.d/ngrok.list \
+  && sudo apt update \
+  && sudo apt install ngrok
+ngrok config add-authtoken <token>
+ngrok tcp 3128
+```
 
 3. Ensure port `3128` is open in the server firewall (e.g., `ufw allow 3128` or security group settings for cloud).
 
