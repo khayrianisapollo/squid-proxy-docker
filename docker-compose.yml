@@ -2,15 +2,28 @@ services:
   proxy:
     image: ubuntu/squid
     ports:
-      - "3128:3128"
+      - 3128:3128        
     environment:
-      - TZ=UTC
+      - TZ=UTC                  
     volumes:
       - ./squid.conf:/etc/squid/squid.conf
     configs:
       - source: squid
         target: /etc/squid/squid.conf
 
+  ngrok:
+    image: ngrok/ngrok:latest
+    ports:
+      - 8080:4040
+    restart: unless-stopped
+    command:
+      - "tcp"
+      - "proxy:3128"
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    depends_on:
+      - proxy
+
 configs:
-    squid:
-      file: ./squid.conf
+  squid:
+    file: ./squid.conf
