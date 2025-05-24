@@ -13,18 +13,32 @@ services:
   proxy:
     image: ubuntu/squid
     ports:
-      - "3128:3128"             # Exposes Squid on port 3128
+      - 3128:3128        
     environment:
-      - TZ=UTC                  # Set timezone
+      - TZ=UTC                  
     volumes:
       - ./squid.conf:/etc/squid/squid.conf
     configs:
       - source: squid
         target: /etc/squid/squid.conf
 
+  ngrok:
+    image: ngrok/ngrok:latest
+    ports:
+      - 8080:4040
+    restart: unless-stopped
+    command:
+      - "tcp"
+      - "proxy:3128"
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    depends_on:
+      - proxy
+
 configs:
-  squid:
+  squid:a
     file: ./squid.conf
+
 ````
 
 * The service uses the official `ubuntu/squid` image.
@@ -60,7 +74,7 @@ This proxy server is designed to be hosted on a remote machine (e.g., VPS or clo
 ```bash
 docker compose up -d
 ```
-### Google Cloud shell
+### Without Docker
 ```bash
 sudo apt install -y squid
 sudo cp squid.conf /etc/squid/
